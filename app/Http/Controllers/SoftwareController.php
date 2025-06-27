@@ -8,20 +8,24 @@ use Illuminate\Support\Facades\Auth;
 
 class SoftwareController extends Controller
 {
-    // Mostra tutti i software e livelli dell'utente loggato
+    /**
+     * Show all software levels for the authenticated user.
+     */
     public function index()
     {
         $software = Auth::user()->software()->get();
         return view('software.index', compact('software'));
     }
 
-    // Esegui upgrade di uno specifico software
+    /**
+     * Upgrade specific software for the authenticated user.
+     */
     public function upgrade($type)
     {
         $user = Auth::user();
         $software = $user->software()->where('type', $type)->firstOrFail();
 
-        // Esempio: costo upgrade, puoi modularlo
+        // Example upgrade cost: 1000 * current level
         $cost = $software->level * 1000;
 
         if ($user->money_clean < $cost) {
@@ -34,6 +38,6 @@ class SoftwareController extends Controller
         $software->level += 1;
         $software->save();
 
-        return back()->with('success', 'Upgrade effettuato!');
+        return back()->with('success', ucfirst($type).' aggiornato al livello '.$software->level.'!');
     }
 }
