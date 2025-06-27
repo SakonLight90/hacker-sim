@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SoftwareController;
+use App\Http\Controllers\AdwareController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,5 +23,9 @@ Route::middleware(['auth', 'ip.session'])->group(function () {
     // Software management
     Route::get('/software', [SoftwareController::class, 'index'])->name('software.index');
     Route::post('/software/upgrade/{type}', [SoftwareController::class, 'upgrade'])->name('software.upgrade');
-    // ...altre route gioco...
+
+    // AdWare management
+    Route::get('/adware', [AdwareController::class, 'index'])->name('adware.index');
+    Route::post('/adware/plant', [AdwareController::class, 'plant'])->name('adware.plant');
+    Route::delete('/adware/remove/{id}', [AdwareController::class, 'remove'])->name('adware.remove');
 });
