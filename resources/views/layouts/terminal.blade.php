@@ -58,6 +58,7 @@
             <b>Menu</b>
             <ul>
                 <li><a href="/console">Console</a></li>
+                <li><a href="/software">Software</a></li>
                 <li><a href="/attacchi">Attacchi</a></li>
                 <li><a href="/upgrade">Upgrade</a></li>
                 <li><a href="/log">Log</a></li>
