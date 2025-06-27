@@ -32,11 +32,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Relation: User has many Software
-     */
     public function software()
     {
         return $this->hasMany(Software::class);
+    }
+
+    // AdWare piazzati da questo utente
+    public function adwarePlanted()
+    {
+        return $this->hasMany(Adware::class, 'source_user_id');
+    }
+
+    // AdWare ricevuti da questo utente
+    public function adwareReceived()
+    {
+        return $this->hasMany(Adware::class, 'target_user_id');
     }
 }
