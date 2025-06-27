@@ -13,6 +13,9 @@ class Software extends Model
         'user_id', 'type', 'level'
     ];
 
+    /**
+     * Get the user that owns the software.
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
